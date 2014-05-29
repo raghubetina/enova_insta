@@ -1,18 +1,32 @@
-<h1>Photo Details</h1>
+<div class="page-header">
+  <h1>Photo Details</h1>
+</div>
 
-<dl>
+<%= link_to "Back", photos_url, :class => "btn btn-default" %>
+
+<dl class="dl-horizontal">
   <dt>Caption:</dt>
   <dd><%= @photo.caption %></dd>
 
   <dt>Image:</dt>
-  <dd><%= image_tag @photo.image_url %></dd>
+  <dd><%= image_tag @photo.image_url, :class => "img-responsive" %></dd>
 </dl>
 
-<%= link_to "Back", photos_url %>
-
-<ul class="comments">
-  <% @things.each do |thing| %>
-    <li></li>
+<ul>
+  <% Comment.where(:photo_id => @photo.id).each do |comment| %>
+    <li><%= comment.content %></li>
   <% end %>
+
+  <li>
+    <%= form_for Comment.new(:photo_id => @photo.id) do |f| %>
+      <%= f.text_field :content %>
+      <%= f.hidden_field :photo_id %>
+
+      <%= f.submit %>
+    <% end %>
+  </li>
 </ul>
 
+
+
+<div style="height: 400px"></div>
