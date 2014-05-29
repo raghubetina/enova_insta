@@ -8,15 +8,16 @@
   </ul>
 <% end %>
 
-<form action="/update_photo/<%= @photo.id %>">
-  <label for="the_caption">Caption:</label>
-  <input id="the_caption" type="text" name="caption" value="<%= @photo.caption %>">
+<%= form_tag photo_url(@photo.id), :method => "patch" do %>
+  <%= label_tag :caption %>
+  <%= text_field_tag :caption, @photo.caption %>
 
-  <label for="the_url">Image URL:</label>
-  <input id="the_url" type="text" name="image_url" value="<%= @photo.image_url %>">
 
-  <input type="submit">
+  <%= label_tag :image_url %>
+  <%= text_field_tag :image_url, @photo.image_url %>
+
+  <%= submit_tag %>
   or
-  <%= link_to "Cancel", "/photos" %>
-</form>
+  <%= link_to "Cancel", photos_url %>
+<% end %>
 

@@ -40,7 +40,7 @@ class PhotosController < ApplicationController
     @photo.image_url = params[:image_url]
 
     if @photo.save
-      redirect_to "http://localhost:3000/photos"
+      redirect_to photos_url
     else
       render 'new'
     end

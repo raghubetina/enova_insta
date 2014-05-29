@@ -1,6 +1,6 @@
 <h1>All Pictures</h1>
 
-<%= link_to "Add A New Photo", "/photos/new" %>
+<%= link_to "Add A New Photo", new_photo_path %>
 
 <ul>
   <% @photos.each do |photo| %>
@@ -8,9 +8,9 @@
       <p><%= photo.caption %></p>
       <%= image_tag photo.image_url, :width => 100 %>
       <p>
-        <%= link_to "See Details", "/photos/#{photo.id}" %>
-        <%= link_to "Edit", "/photos/#{photo.id}/edit" %>
-        <%= link_to "Destroy", "/delete_photo/#{photo.id}" %>
+        <%= link_to "See Details", photo %>
+        <%= link_to "Edit", edit_photo_path(photo) %>
+        <%= link_to "Destroy", photo, :method => "delete" %>
       </p>
     </li>
   <% end %>

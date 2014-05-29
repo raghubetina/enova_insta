@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
   root 'photos#index'
 
-  get 'photos/new' => 'photos#new'
-  get "/create_photo", :controller => "photos", :action => "create"
+  # CREATE
+  get    'photos/new' => 'photos#new', :as => 'new_photo'
+  post   'photos' => 'photos#create', :as => 'photos'
 
   # READ
-  get "/photos", :controller => "photos", :action => "index"
-  get "/photos/:id", :controller => "photos", :action => "show"
+  get    'photos' => 'photos#index'
+  get    'photos/:id' => 'photos#show', :as => 'photo'
 
   # UPDATE
-  get "/photos/:id/edit", :controller => "photos", :action => "edit"
-  get "/update_photo/:id", :controller => "photos", :action => "update"
+  get    'photos/:id/edit' => 'photos#edit', :as => 'edit_photo'
+  patch  'photos/:id' => 'photos#update'
 
   # DELETE
-  get "/delete_photo/:id", :controller => "photos", :action => "destroy"
+  delete 'photos/:id' => 'photos#destroy'
 end
