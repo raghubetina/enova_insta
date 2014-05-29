@@ -16,8 +16,8 @@ class PhotosController < ApplicationController
 
   def update
     @photo = Photo.find(params[:id])
-    @photo.caption = params[:caption]
-    @photo.image_url = params[:image_url]
+    @photo.caption = params[:photo][:caption]
+    @photo.image_url = params[:photo][:image_url]
 
     if @photo.save
       redirect_to @photo
@@ -36,8 +36,8 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new
-    @photo.caption = params[:caption]
-    @photo.image_url = params[:image_url]
+    @photo.caption = params[:photo][:caption]
+    @photo.image_url = params[:photo][:image_url]
 
     if @photo.save
       redirect_to photos_url
