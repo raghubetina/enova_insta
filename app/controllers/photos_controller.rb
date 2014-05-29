@@ -15,12 +15,15 @@ class PhotosController < ApplicationController
   end
 
   def update
-    p = Photo.find(params[:id])
-    p.caption = params[:caption]
-    p.image_url = params[:image_url]
-    p.save
+    @photo = Photo.find(params[:id])
+    @photo.caption = params[:caption]
+    @photo.image_url = params[:image_url]
 
-    redirect_to "http://localhost:3000/photos/#{p.id}"
+    if @photo.save
+      redirect_to "http://localhost:3000/photos/#{@photo.id}"
+    else
+      render 'edit'
+    end
   end
 
   def edit
@@ -28,15 +31,19 @@ class PhotosController < ApplicationController
   end
 
   def new
+    @photo = Photo.new
   end
 
   def create
-    p = Photo.new
-    p.caption = params[:caption]
-    p.image_url = params[:image_url]
-    p.save
+    @photo = Photo.new
+    @photo.caption = params[:caption]
+    @photo.image_url = params[:image_url]
 
-    redirect_to "http://localhost:3000/photos"
+    if @photo.save
+      redirect_to "http://localhost:3000/photos"
+    else
+      render 'new'
+    end
   end
 end
 

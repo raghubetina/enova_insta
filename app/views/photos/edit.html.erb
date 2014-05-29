@@ -1,5 +1,13 @@
 <h1>Edit Picture</h1>
 
+<% if @photo.errors.any? %>
+  <ul>
+    <% @photo.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <form action="/update_photo/<%= @photo.id %>">
   <label for="the_caption">Caption:</label>
   <input id="the_caption" type="text" name="caption" value="<%= @photo.caption %>">
