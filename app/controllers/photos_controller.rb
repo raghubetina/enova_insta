@@ -4,19 +4,28 @@ class PhotosController < ApplicationController
   def destroy
     @photo.destroy
 
-    redirect_to photos_url
+    redirect_to photos_url, :notice => "Photo was destroyed."
   end
 
   def index
     @photos = Photo.all
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @photos }
+    end
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render :json => @photo }
+    end
   end
 
   def update
     if @photo.update(photo_params)
-      redirect_to @photo
+      redirect_to @photo, :notice => "Photo was updated successfully."
     else
       render 'edit'
     end
@@ -33,7 +42,7 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
 
     if @photo.save
-      redirect_to photos_url
+      redirect_to photos_url, :notice => "Photo was created successfully."
     else
       render 'new'
     end
