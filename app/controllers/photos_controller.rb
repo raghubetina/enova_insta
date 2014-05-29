@@ -1,7 +1,8 @@
 class PhotosController < ApplicationController
+  before_action :set_photo, :only => [:show, :edit, :update, :destroy]
+
   def destroy
-    p = Photo.find(params[:id])
-    p.destroy
+    @photo.destroy
 
     redirect_to photos_url
   end
@@ -11,15 +12,10 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.find(params[:id])
   end
 
   def update
-    @photo = Photo.find(params[:id])
-    @photo.caption = params[:photo][:caption]
-    @photo.image_url = params[:photo][:image_url]
-
-    if @photo.save
+    if @photo.update(photo_params)
       redirect_to @photo
     else
       render 'edit'
@@ -27,7 +23,6 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @photo = Photo.find(params[:id])
   end
 
   def new
@@ -35,15 +30,23 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.new
-    @photo.caption = params[:photo][:caption]
-    @photo.image_url = params[:photo][:image_url]
+    @photo = Photo.new(photo_params)
 
     if @photo.save
       redirect_to photos_url
     else
       render 'new'
     end
+  end
+
+  private
+
+  def photo_params
+    params.require(:photo).permit(:caption, :image_url)
+  end
+
+  def set_photo
+    @photo = Photo.find(params[:id])
   end
 end
 
