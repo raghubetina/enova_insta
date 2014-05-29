@@ -5,5 +5,7 @@
   <dd><%= @photo.caption %></dd>
 
   <dt>Image:</dt>
-  <dd><img src="<%= @photo.image_url %>"></dd>
+  <dd><%= image_tag @photo.image_url %></dd>
 </dl>
+
+<%= link_to "Back", "/photos" %>

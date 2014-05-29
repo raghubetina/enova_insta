@@ -1,16 +1,16 @@
 <h1>All Pictures</h1>
 
-<a href="/photos/new">Add A New Picture</a>
+<%= link_to "Add A New Photo", "/photos/new" %>
 
 <ul>
   <% @photos.each do |photo| %>
     <li>
       <p><%= photo.caption %></p>
-      <img src="<%= photo.image_url %>" width="100">
+      <%= image_tag photo.image_url, :width => 100 %>
       <p>
-        <a href="/photos/<%= photo.id %>">See Details</a>
-        <a href="/photos/<%= photo.id %>/edit">Edit</a>
-        <a href="/delete_photo/<%= photo.id %>">Destroy</a>
+        <%= link_to "See Details", "/photos/#{photo.id}" %>
+        <%= link_to "Edit", "/photos/#{photo.id}/edit" %>
+        <%= link_to "Destroy", "/delete_photo/#{photo.id}" %>
       </p>
     </li>
   <% end %>
