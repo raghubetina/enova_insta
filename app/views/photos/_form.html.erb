@@ -1,0 +1,19 @@
+<% if @photo.errors.any? %>
+  <ul>
+    <% @photo.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @photo do |f| %>
+  <%= f.label :caption %>
+  <%= f.text_field :caption %>
+
+  <%= f.label :image_url %>
+  <%= f.text_field :image_url %>
+
+  <%= f.submit %>
+  or
+  <%= link_to "Cancel", photos_url %>
+<% end %>
