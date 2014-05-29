@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
     p = Photo.find(params[:id])
     p.destroy
 
-    redirect_to "http://localhost:3000/photos"
+    redirect_to photos_url
   end
 
   def index
@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
     @photo.image_url = params[:image_url]
 
     if @photo.save
-      redirect_to "http://localhost:3000/photos/#{@photo.id}"
+      redirect_to @photo
     else
       render 'edit'
     end
