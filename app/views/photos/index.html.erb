@@ -8,9 +8,10 @@
   <div class="row">
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <%= image_tag photo.image_url, :class => "img-responsive" %>
+        <%= image_tag photo.image, :class => "img-responsive" %>
         <div class="caption">
           <h3><%= photo.caption %></h3>
+          <h4><%= photo.user.email %></h4>
           <p>
             <%= link_to "See Details", photo, :class => "btn btn-primary" %>
             <%= link_to "Edit", edit_photo_path(photo), :class => "btn btn-warning" %>

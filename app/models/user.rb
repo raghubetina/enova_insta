@@ -1,7 +1,12 @@
 class User < ActiveRecord::Base
-  validates :nickname, :presence => true, :uniqueness => true
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :own_photos, :class_name => "Photo"
+  # validates :nickname, :presence => true, :uniqueness => true
+
+  has_many :own_photos, :class_name => "Photo", :dependent => :destroy
   has_many :comments
   has_many :favorites
 

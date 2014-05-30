@@ -42,8 +42,18 @@
 # puts "There are now #{Comment.count} comments."
 
 users = [
-  { :nickname => "Raghu", :avatar_url => "https://graph.facebook.com/rbetina/picture" },
-  { :nickname => "Roneesh", :avatar_url => "https://graph.facebook.com/roneesh/picture" }
+  { :email => "raghu@example.com",
+    :password => "11111111",
+    :password_confirmation => "11111111",
+    :nickname => "Raghu",
+    :avatar_url => "https://graph.facebook.com/rbetina/picture"
+  },
+  { :email => "roneesh@example.com",
+    :password => "11111111",
+    :password_confirmation => "11111111",
+    :nickname => "Roneesh",
+    :avatar_url => "https://graph.facebook.com/roneesh/picture"
+  }
 ]
 
 User.create users

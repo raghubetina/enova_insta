@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
   validates :photo, :presence => true
   validates :content, :presence => true
+  validates :user, :presence => true
 
   validates :content, :uniqueness => { :scope => :photo_id }
 
