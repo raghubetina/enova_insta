@@ -12,3 +12,36 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<h3>Photos from users I follow</h3>
+
+<ul>
+  <% @user.timeline.order("created_at DESC").each do |photo| %>
+    <li>
+      <%= image_tag photo.image_url, :width => 240 %>
+      <p><%= photo.caption %></p>
+    </li>
+  <% end %>
+</ul>
+
+<h3>My Photos</h3>
+
+<ul>
+  <% @user.own_photos.each do |photo| %>
+    <li>
+      <%= image_tag photo.image_url, :width => 240 %>
+      <p><%= photo.caption %></p>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Favorite Photos</h3>
+
+<ul>
+  <% @user.favorite_photos.each do |photo| %>
+    <li>
+      <%= image_tag photo.image_url, :width => 240 %>
+      <p><%= photo.caption %></p>
+    </li>
+  <% end %>
+</ul>

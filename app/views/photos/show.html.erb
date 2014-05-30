@@ -27,6 +27,15 @@
   </li>
 </ul>
 
+<ul>
+  <% @photo.fans.each do |user| %>
+    <li>
+      <%= image_tag user.avatar_url, :width => 80 %>
+      <p><%= user.nickname %></p>
+    </li>
+  <% end %>
+</ul>
+
 
 
 <div style="height: 400px"></div>
