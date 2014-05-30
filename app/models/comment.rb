@@ -1,9 +1,10 @@
 class Comment < ActiveRecord::Base
-  validates :photo_id, :presence => true
+  validates :photo, :presence => true
   validates :content, :presence => true
 
   validates :content, :uniqueness => { :scope => :photo_id }
 
+  belongs_to :user
   belongs_to :photo #, :class_name => "Photo", :foreign_key => "photo_id"
 
   # def photo

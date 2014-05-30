@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529191352) do
+ActiveRecord::Schema.define(version: 20140530143235) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "favorites", force: true do |t|
+    t.integer  "user_id"
     t.integer  "photo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -23,6 +31,14 @@ ActiveRecord::Schema.define(version: 20140529191352) do
   create_table "photos", force: true do |t|
     t.string   "caption"
     t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "nickname"
+    t.string   "avatar_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
