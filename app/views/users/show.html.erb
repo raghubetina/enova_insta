@@ -11,19 +11,11 @@
 </p>
 
 <p>
-<% following = Following.new %>
-<% following.leader_id = @user.id %>
-<% following.follower_id = current_user.id %>
-
-  <%= form_for following do |f| %>
-    <%= f.hidden_field :leader_id %>
-    <%= f.hidden_field :follower_id %>
-    <%= f.submit "Follow", :class => "btn btn-success" %>
+  <% if @user.followers.include?(current_user) %>
+    <%= link_to "Unfollow", Following.find_by(:leader_id => @user.id, :follower_id => current_user.id), :method => "delete", :class => "btn btn-danger" %>
+  <% else %>
+    <%= button_to "Follow", followings_url(:following => { :leader_id => @user.id, :follower_id => current_user.id }), :class => "btn btn-success" %>
   <% end %>
-</p>
-
-<p>
-  <%= button_to "Follow", followings_url(:following => { :leader_id => @user.id, :follower_id => current_user.id }), :class => "btn btn-warning" %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

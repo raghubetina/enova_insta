@@ -15,8 +15,28 @@
         <%= content_tag "p", photo.caption, :class => "lead"  %>
         <p>
           <%= link_to "<i class='fa fa-search-plus'></i>".html_safe, photo, :class => "btn btn-primary" %>
-          <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_photo_path(photo), :class => "btn btn-warning" %>
-          <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, photo, :method => "delete", :class => "btn btn-danger" %>
+
+          <% if current_user == photo.user %>
+            <%= link_to "<i class='fa fa-edit'></i>".html_safe,
+                        edit_photo_path(photo),
+                        :class => "btn btn-warning" %>
+            <%= link_to "<i class='fa fa-trash-o'></i>".html_safe,
+                        photo,
+                        :method => "delete",
+                        :class => "btn btn-danger" %>
+          <% end %>
+
+          <% if photo.fans.include?(current_user) %>
+            <%= link_to "<i class='fa fa-heart'></i>".html_safe,
+                        Favorite.find_by(:user_id => current_user.id, :photo_id => photo.id),
+                        :method => "delete",
+                        :class => "btn btn-danger" %>
+          <% else %>
+            <%= link_to "<i class='fa fa-heart-o'></i>".html_safe,
+                        favorites_url(:favorite => { :photo_id => photo.id }),
+                        :method => "post",
+                        :class => "btn btn-success" %>
+          <% end %>
         </p>
       </div>
     </div>
