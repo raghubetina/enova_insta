@@ -70,7 +70,8 @@ photo_hashes = [
 photo_hashes.each do |photo_hash|
   photo = Photo.new
   photo.caption = photo_hash[:caption]
-  photo.image = File.open("/Users/student/code/enova/instagram/lib/seed_images/#{photo_hash[:image_url]}")
+
+  photo.image = File.open(Rails.root.join('lib', 'seed_images', photo_hash[:image_url]).to_s)
 
   random_user = User.offset(rand(User.count)).limit(1).first
   photo.user = random_user
