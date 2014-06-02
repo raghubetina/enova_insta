@@ -1,6 +1,21 @@
 class PhotosController < ApplicationController
   before_action :set_photo, :only => [:show, :edit, :update, :destroy]
 
+  def wall
+    @photos = current_user.own_photos
+    render 'index'
+  end
+
+  def timeline
+    @photos = current_user.timeline
+    render 'index'
+  end
+
+  def favorites
+    @photos = current_user.favorite_photos
+    render 'index'
+  end
+
   def destroy
     @photo.destroy
 
