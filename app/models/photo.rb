@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  validates :image_url, :presence => true, :uniqueness => true
+  # validates :image_url, :presence => true, :uniqueness => true
   validates :user, :presence => true
 
   has_many :comments, :dependent => :destroy
