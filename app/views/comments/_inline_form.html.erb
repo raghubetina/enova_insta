@@ -1,0 +1,8 @@
+<li class="media">
+  <div class="media-body">
+    <%= form_for comment do |f| %>
+      <%= f.text_field :content, :class => "form-control", :placeholder => "Add a comment..." %>
+      <%= f.hidden_field :photo_id %>
+    <% end %>
+  </div>
+</li>
