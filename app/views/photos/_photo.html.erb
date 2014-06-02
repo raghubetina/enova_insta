@@ -8,23 +8,17 @@
       </div>
     </div>
   </div>
-  <div class="col-md-7 well">
+  <div class="col-md-6 well">
     <div class="thumbnail">
       <%= image_tag photo.image, :class => "img-responsive" %>
       <div class="caption">
         <%= content_tag "p", photo.caption, :class => "lead"  %>
         <p>
-          <%= link_to "<i class='fa fa-search-plus'></i>".html_safe, photo, :class => "btn btn-primary" %>
+          <%= render 'show_button', :photo => photo %>
 
           <% if current_user == photo.user %>
-            <%= link_to "<i class='fa fa-edit'></i>".html_safe,
-                        edit_photo_path(photo),
-                        :class => "btn btn-warning" %>
-            <%= link_to "<i class='fa fa-trash-o'></i>".html_safe,
-                        photo,
-                        :method => "delete",
-                        :class => "btn btn-danger",
-                        :remote => true %>
+            <%= render 'edit_button', :photo => photo %>
+            <%= render 'destroy_button', :photo => photo %>
           <% end %>
 
           <% if photo.fans.include?(current_user) %>
@@ -36,9 +30,7 @@
       </div>
     </div>
     <ul class="media-list">
-      <% photo.comments.each do |comment| %>
-        <%= render 'comments/comment', :comment => comment %>
-      <% end %>
+      <%= render photo.comments %>
 
       <%= render 'comments/inline_form', :comment => Comment.new(:photo_id => photo.id) %>
     </ul>
