@@ -1,6 +1,12 @@
 <div class="row">
   <div class="col-md-2 col-md-offset-1">
-    <p><%= photo.user.email %></p>
+    <div class="media">
+      <%= link_to image_tag(photo.user.avatar_url, :class => "media-object"), photo.user %>
+      <div class="media-body">
+        <h4 class="media-heading"><%= photo.user.nickname %></h4>
+        <%= time_ago_in_words photo.created_at %> ago
+      </div>
+    </div>
   </div>
   <div class="col-md-7 well">
     <div class="thumbnail">
@@ -14,8 +20,10 @@
         </p>
       </div>
     </div>
-    <% photo.comments.each do |comment| %>
-      <%= render 'comments/comment', :comment => comment %>
-    <% end %>
+    <ul class="media-list">
+      <% photo.comments.each do |comment| %>
+        <%= render 'comments/comment', :comment => comment %>
+      <% end %>
+    </ul>
   </div>
 </div>
