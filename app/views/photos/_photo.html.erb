@@ -16,15 +16,16 @@
         <p>
           <%= link_to "<i class='fa fa-search-plus'></i>".html_safe, photo, :class => "btn btn-primary" %>
 
-          <% if current_user == photo.user %>
+          <%# if current_user == photo.user %>
             <%= link_to "<i class='fa fa-edit'></i>".html_safe,
                         edit_photo_path(photo),
                         :class => "btn btn-warning" %>
             <%= link_to "<i class='fa fa-trash-o'></i>".html_safe,
                         photo,
                         :method => "delete",
-                        :class => "btn btn-danger" %>
-          <% end %>
+                        :class => "btn btn-danger",
+                        :remote => true %>
+          <%# end %>
 
           <% if photo.fans.include?(current_user) %>
             <%= link_to "<i class='fa fa-heart'></i>".html_safe,

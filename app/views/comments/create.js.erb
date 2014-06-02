@@ -1,0 +1,3 @@
+$('#photo_<%= @comment.photo.id %>_comment_form').before('<%= j(render @comment) %>').hide().slideDown();
+
+$('#photo_<%= @comment.photo.id %>_comment_form #comment_content').val('');

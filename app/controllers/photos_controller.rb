@@ -1,6 +1,14 @@
 class PhotosController < ApplicationController
   before_action :set_photo, :only => [:show, :edit, :update, :destroy]
 
+  before_action :signed_in_user_must_be_owner, :only => [:edit, :update, :destroy]
+
+  def signed_in_user_must_be_owner
+    if @photo.user != current_user
+      redirect_to root_url, :alert => "Nice try, suckah"
+    end
+  end
+
   def wall
     @photos = current_user.own_photos
     render 'index'
