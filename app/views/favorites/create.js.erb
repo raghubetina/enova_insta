@@ -1,0 +1,1 @@
+$('#photo_<%= @favorite.photo.id %>_favorite_button').replaceWith('<%= j(render 'photos/unfavorite_button', photo: @favorite.photo) %>');

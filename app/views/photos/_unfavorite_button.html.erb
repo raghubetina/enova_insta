@@ -1,0 +1,7 @@
+<span id="photo_<%= photo.id %>_favorite_button">
+  <%= link_to "<i class='fa fa-heart'></i>".html_safe,
+              Favorite.find_by(:user_id => current_user.id, :photo_id => photo.id),
+              :method => "delete",
+              :class => "btn btn-danger",
+              :remote => true %>
+</span>

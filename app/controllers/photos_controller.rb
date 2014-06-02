@@ -27,7 +27,10 @@ class PhotosController < ApplicationController
   def destroy
     @photo.destroy
 
-    redirect_to photos_url, :notice => "Photo was destroyed."
+    respond_to do |format|
+      format.html { redirect_to photos_url, :notice => "Photo was destroyed." }
+      format.js
+    end
   end
 
   def index
